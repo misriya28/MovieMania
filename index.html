@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <!-- read single movie details  :    read data -->
+    <div class="popup" id="popup">
+        <div class="modal">
+            <div class="cross_icon">
+                <i id="close" class="fa-solid fa-rectangle-xmark" onclick="closeIcon('popup')"></i>
+            </div>
+            <h1 id="title">Dangal</h1>
+            <div class="movie_details">
+                <div class="poster">
+                    <div class="poster_img">
+                      <img id="poster_url" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ4MzQzMzM2Nl5BMl5BanBnXkFtZTgwMTQ1NzU3MDI@._V1_SY500_CR0,0,356,500_AL_.jpg" alt="dangal">
+                     
+                    </div>
+                    <p id="genre">Action.Biography.Drama</p>
+                </div>
+                <div class="details">
+                    <div>
+                        <h1>Storyline</h1>
+                        <p id="story">Biopic of Mahavir Singh Phogat, who taught wrestling to his daughters Babita Kumari and Geeta Phogat. Geeta Phogat was India's first female wrestler to win at the 2010 Commonwealth Games, where she won the gold medal (55 kg) while her sister Babita Kumari won the silver (52 kg).</p>
+                    </div>
+                    <div>
+                        <h1>Actors</h1>
+                        <p id="a_name">Aamir Khan, Sakshi Tanwar, Fatima Sana Shaikh</p>
+                    </div>
+
+                    <div>
+                        <h1>Runtime</h1>
+                        <p id="runtime">PT161M</p>
+                    </div>
+
+                    <div>
+                        <h1>Realease Date</h1>
+                        <p id="r_date">2016-12-23</p>
+                    </div>
+
+                    <div>
+                        <h1>Ratings</h1>
+
+                        <!-- imbd_details -->
+                        <div class="rating">
+                            <div>
+                              <h2>Imbd</h2>
+                              <p id="imbd">8.5</p>
+                            </div>
+
+                            <div>
+                                <h2>Average Rating</h2>
+                                <p id="avg">7.8S</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- add movie -->
+
+    <div class="add_movie" id="add_movie">
+        <div class="new_box">
+            <div class="cross_icon">
+                <i id="close" class="fa-solid fa-rectangle-xmark" onclick="closeIcon('add_movie')"></i>
+            </div>
+            <h1>Add New Movie</h1>
+            <form id="frms">
+            <div class="forms"  >
+                <input id="add_title" type="text" placeholder="Enter Title" class="inp"/>
+                <input id="add_genres" type="text" placeholder="Enter Genres separated by" class="inp">
+                <input id="add_duration" type="number" placeholder="Enter Duration" class="inp">
+                <input id="add_date" type="text" onfocus="converTodate()" placeholder="Enter Realease date" class="inp">
+                <input id="add_actors" type="text" placeholder="Enter Actors separated by ," class="inp">
+                <input id="add_imbd" type="number" placeholder="Enter IMBD Rating" class="inp">
+                <input id="add_url" type="url" placeholder="Enter poster URL" class="inp url">
+                <textarea id="add_storyline" placeholder="Enter Storyline" class="inp stry"></textarea>
+                <button type="button" onclick="createMovie()">Create Movie</button>
+
+            </div>
+        </form>
+        </div>
+
+    </div>
+
+
+<!-- update movie -->
+
+<div class="update_movie" id="update_movie">
+    <div class="new_box">
+        <div class="cross_icon">
+            <i id="close" class="fa-solid fa-rectangle-xmark" onclick="closeIcon('update_movie')"></i>
+        </div>
+        <h1>Edit Movie</h1>
+        <form id="frms">
+        <div class="forms"  >
+            <input id="update_title" type="text" placeholder="Enter Title" class="inp"/>
+            <input id="update_genres" type="text" placeholder="Enter Genres separated by" class="inp">
+            <input id="update_duration" type="number" placeholder="Enter Duration" class="inp">
+            <input id="update_date" type="text" onfocus="converTodate()" placeholder="Enter Realease date" class="inp">
+            <input id="update_actors" type="text" placeholder="Enter Actors separated by ," class="inp">
+            <input id="update_imbd" type="number" placeholder="Enter IMBD Rating" class="inp">
+            <input id="update_url" type="url" placeholder="Enter poster URL" class="inp url">
+            <textarea id="update_storyline" placeholder="Enter Storyline" class="inp stry"></textarea>
+            <button type="button" onclick="updateMovie()">Update Movie</button>
+        </div>
+    </form>
+    </div>
+</div>
+
+
+    <!-- displaing all movie details -->
+    <section class="screen">
+
+        <div class="title">
+        <h1>All movie</h1>
+        <button onclick="openAddMovie()">Add new movie</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Realease Date</th>
+                    <th>Genres</th>
+                    <th>Duration</th>
+                    <th>IMBD Rating</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="body">
+                <!-- <tr>
+                    <td>1</td>
+                    <td>abc</td>
+                    <th>Realease Date</th>
+                    <th>Genres</th>
+                    <th>Duration</th>
+                    <th>IMBD Rating</th>
+                    <th>Action</th>
+                </tr> -->
+            </tbody>
+            
+        </table>
+
+        <div class="pagination">
+          <div class="paginate">
+            <button onclick="prevPage()" >
+                <i class="fa-solid fa-angles-left"></i>
+          
+            </button>
+        <div id="changePages">
+
+        </div>
+            <button onclick="nextPage()">
+                <i class="fa-solid fa-angles-right"></i>
+          
+            </button>
+            <input id="enterP" type="text" placeholder="Enter number" onkeyup="navTopage(this.value)">
+          </div>
+
+          <div class="pages">
+            <p>Page <span id="pageNum">1 </span> Of <span id="numberOfpages"> 5</span></p>
+          </div>
+          
+        </div>
+    </section>
+
+
+
+
+    <script src="./index.js"></script>
+</body>
+</html>
